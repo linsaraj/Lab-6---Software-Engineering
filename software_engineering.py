@@ -25,8 +25,20 @@ def encoder(password):
     return revised_password
 
 # decoder
-def decoder(password):
-    pass
+def decoder(encoded_password):
+        decoded_password = ""
+        for digit in encoded_password:
+            if int(digit) >= 3:
+                decoded_digit = int(digit) - 3
+            if int(digit) == 2:
+                decoded_digit = 9
+            if int(digit) == 1:
+                decoded_digit = 8
+            if int(digit) == 0:
+                decoded_digit = 7
+            decoded_password += str(decoded_digit)
+        return(decoded_password)
+
 
 if __name__ == '__main__':
 
