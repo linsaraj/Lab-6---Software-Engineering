@@ -8,7 +8,17 @@ def encoder(password):
 
     for i in password:
         # adds +3 to each digit
-        variable = int(i) + 3
+        if int(i) <= 6:
+            variable = int(i) + 3
+        if int(i) == 7:
+            # if digit equals 7, 7+3=10, so new digit would be 0
+            variable = 0
+        if int(i) == 8:
+            # if digit equals 8, 8+3=11, so new digit would be 1
+            variable = 1
+        if int(i) == 9:
+            # if digit equals 9, 9+3=12, so new digit would be 2
+            variable = 2
         revised_password += str(variable)
         # adds the variable to an empty string
 
@@ -18,40 +28,42 @@ def encoder(password):
 def decoder(password):
     pass
 
-condition = True
-while condition == True:
+if __name__ == '__main__':
 
-    print()
-    print('Menu:')
-    print('-------------')
-    print('1. Encode')
-    print('2. Decode')
-    print('3. Quit')
-    print()
-    # the menu options
+    condition = True
+    while condition == True:
 
-    user_input = int(input('Please enter an option: '))
+        print()
+        print('Menu:')
+        print('-------------')
+        print('1. Encode')
+        print('2. Decode')
+        print('3. Quit')
+        print()
+        # the menu options
 
-    if user_input == 1:
-        # encode option
+        user_input = int(input('Please enter an option: '))
 
-        password = input('Please enter your password to encode: ')
+        if user_input == 1:
+            # encode option
 
-        if len(password) < 8:
-            # if the password is less than 8 digits, it prompts the user to reenter password
-            print('Your password should be at least 8 digits long.')
-            continue
+            password = input('Please enter your password to encode: ')
 
-        revised_password = encoder(password)
-        # encodes the password and stores it
-        print('Your password has been encoded and stored!')
+            if len(password) < 8:
+                # if the password is less than 8 digits, it prompts the user to reenter password
+                print('Your password should be at least 8 digits long.')
+                continue
 
-    if user_input == 2:
-        # decode option
-        password = decoder(revised_password)
-        # decodes the password
-        print(f'The encoded password is {revised_password}, and the original password is {password}.')
+            revised_password = encoder(password)
+            # encodes the password and stores it
+            print('Your password has been encoded and stored!')
 
-    if user_input == 3:
-        # exit option
-        break
+        if user_input == 2:
+            # decode option
+            password = decoder(revised_password)
+            # decodes the password
+            print(f'The encoded password is {revised_password}, and the original password is {password}.')
+
+        if user_input == 3:
+            # exit option
+            break
